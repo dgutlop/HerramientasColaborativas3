@@ -1,0 +1,748 @@
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB$ cd Ejercicio3
+bash: cd: Ejercicio3: No existe el archivo o el directorio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB$ ls
+EJERCICIO2  EJERCICIO3  portfolio-git
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB$ cd EJERCICIO3
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git config --global user.name
+git config --global user.email
+dgutlop
+dgutlop5@gmail.com
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git config --global alias.lg "log --graph --oneline --decorate --all"
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git lg
+fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git init
+ayuda: Usando 'master' como el nombre de la rama inicial. Este nombre de rama predeterminado
+ayuda: está sujeto a cambios. Para configurar el nombre de la rama inicial para usar en todos
+ayuda: de sus nuevos repositorios, reprimiendo esta advertencia, llama a:
+ayuda: 
+ayuda:  git config --global init.defaultBranch <nombre>
+ayuda: 
+ayuda: Los nombres comúnmente elegidos en lugar de 'master' son 'main', 'trunk' y
+ayuda: 'development'. Se puede cambiar el nombre de la rama recién creada mediante este comando:
+ayuda: 
+ayuda:  git branch -m <nombre>
+Inicializado repositorio Git vacío en /home/alumno05/git/GITHUB/EJERCICIO3/.git/
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ ls -a
+.  ..  .git
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git lg
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ touch .gitignore
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ *.log
+dist/
+*.log: no se encontró la orden
+bash: dist/: No existe el archivo o el directorio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ index.html
+about.html
+style.css
+app.js
+index.html: no se encontró la orden
+about.html: no se encontró la orden
+style.css: no se encontró la orden
+app.js: no se encontró la orden
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git init
+Reinicializado el repositorio Git existente en /home/alumno05/git/GITHUB/EJERCICIO3/.git/
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add .
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git commit -m "feat: initial web app structure"
+[master (commit-raíz) 32b7301] feat: initial web app structure
+ 5 files changed, 33 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 about.html
+ create mode 100644 app.js
+ create mode 100644 index.html
+ create mode 100644 style.css
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git remote add origin https://github.com/dgutlop/HerramientasColaborativas3.git
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push -u origin master
+Enumerando objetos: 7, listo.
+Contando objetos: 100% (7/7), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (5/5), listo.
+Escribiendo objetos: 100% (7/7), 882 bytes | 882.00 KiB/s, listo.
+Total 7 (delta 0), reusados 0 (delta 0), pack-reusados 0
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ * [new branch]      master -> master
+rama 'master' configurada para rastrear 'origin/master'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch
+git lg
+* master
+* 32b7301 (HEAD -> master, origin/master) feat: initial web app structure
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch
+git lg
+* master
+* 32b7301 (HEAD -> master, origin/master) feat: initial web app structure
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ 
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+* 32b7301 (HEAD -> master, origin/master) feat: initial web app structure
+about.html: no se encontró la orden
+bash: error de sintaxis cerca del elemento inesperado `('
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch
+* master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout -b feature/data-loading
+Cambiado a nueva rama 'feature/data-loading'
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch
+* feature/data-loading
+  master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ cat > data.json <<'EOF'
+{"version": "1.0", "status": "active"}
+EOF
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add data.json
+git commit -m "feat: add data.json with app metadata"
+[feature/data-loading 4017c54] feat: add data.json with app metadata
+ 1 file changed, 1 insertion(+)
+ create mode 100644 data.json
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ cat > app.js <<'EOF'
+console.log("App iniciada...");
+
+fetch("data.json")
+  .then((response) => response.json())
+  .then((data) => console.log("Datos cargados:", data))
+  .catch((error) => console.error("Error cargando data.json:", error));
+EOF
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add app.js
+git commit -m "feat: load and log data.json in app.js"
+[feature/data-loading afc7fe4] feat: load and log data.json in app.js
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git lg
+* afc7fe4 (HEAD -> feature/data-loading) feat: load and log data.json in app.js
+* 4017c54 feat: add data.json with app metadata
+* 32b7301 (origin/master, master) feat: initial web app structure
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git show <HASH_DEL_COMMIT_JS>
+bash: error de sintaxis cerca del elemento inesperado `newline'
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git lg
+                                                      git show afc7fe4
+commit afc7fe47f1707ba4705146ec01992cb284428f85 (HEAD -> feature/data-loading)
+Author: dgutlop <dgutlop5@gmail.com>
+Date:   Fri Feb 13 10:30:46 2026 +0100
+
+    feat: load and log data.json in app.js
+
+diff --git a/app.js b/app.js
+index ce284f2..3fa253d 100644
+--- a/app.js
++++ b/app.js
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout master
+Cambiado a rama 'master'
+Tu rama está actualizada con 'origin/master'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout -b hotfix/about-styles
+Cambiado a nueva rama 'hotfix/about-styles'
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ cat > about.html <<'EOF'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sobre mí</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Acerca de este proyecto</h1>
+</body>
+EOFtml>
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add about.html
+git commit -m "hotfix: link stylesheet in about page"
+[hotfix/about-styles 425cf15] hotfix: link stylesheet in about page
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout master
+Cambiado a rama 'master'
+Tu rama está actualizada con 'origin/master'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge hotfix/about-styles
+Actualizando 32b7301..425cf15
+Fast-forward
+ about.html | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git lg
+* 425cf15 (HEAD -> master, hotfix/about-styles) hotfix: link stylesheet in about page
+| * afc7fe4 (feature/data-loading) feat: load and log data.json in app.js
+| * 4017c54 feat: add data.json with app metadata
+|/  
+* 32b7301 (origin/master) feat: initial web app structure
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push origin master
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 423 bytes | 423.00 KiB/s, listo.
+Total 3 (delta 1), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+   32b7301..425cf15  master -> master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout feature/data-loading
+git merge master
+Cambiado a rama 'feature/data-loading'
+Merge made by the 'ort' strategy.
+ about.html | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push
+fatal: The current branch feature/data-loading has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin feature/data-loading
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push -u origin feature/data-loading
+Enumerando objetos: 12, listo.
+Contando objetos: 100% (11/11), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (7/7), listo.
+Escribiendo objetos: 100% (8/8), 935 bytes | 935.00 KiB/s, listo.
+Total 8 (delta 3), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (3/3), completed with 1 local object.
+remote: 
+remote: Create a pull request for 'feature/data-loading' on GitHub by visiting:
+remote:      https://github.com/dgutlop/HerramientasColaborativas3/pull/new/feature/data-loading
+remote: 
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ * [new branch]      feature/data-loading -> feature/data-loading
+rama 'feature/data-loading' configurada para rastrear 'origin/feature/data-loading'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push
+Everything up-to-date
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge hotfix/about-styles
+git lg
+Ya está actualizado.
+*   a398f72 (HEAD -> feature/data-loading, origin/feature/data-loading) Merge branch 'master' into feature/data-loading
+|\  
+| * 425cf15 (origin/master, master, hotfix/about-styles) hotfix: link stylesheet in about page
+* | afc7fe4 feat: load and log data.json in app.js
+* | 4017c54 feat: add data.json with app metadata
+|/  
+* 32b7301 feat: initial web app structure
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add index.html
+git commit -m "feat: add Proyectos link to nav"
+git push
+[feature/data-loading 7793703] feat: add Proyectos link to nav
+ 1 file changed, 16 insertions(+), 12 deletions(-)
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 518 bytes | 518.00 KiB/s, listo.
+Total 3 (delta 1), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+   a398f72..7793703  feature/data-loading -> feature/data-loading
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout master
+Cambiado a rama 'master'
+Tu rama está actualizada con 'origin/master'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout -b feature/ui-update
+Cambiado a nueva rama 'feature/ui-update'
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add index.html
+git commit -m "refactor: update nav to ul list"
+git push -u origin feature/ui-update
+[feature/ui-update 5362455] refactor: update nav to ul list
+ 1 file changed, 18 insertions(+), 12 deletions(-)
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 505 bytes | 505.00 KiB/s, listo.
+Total 3 (delta 1), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: 
+remote: Create a pull request for 'feature/ui-update' on GitHub by visiting:
+remote:      https://github.com/dgutlop/HerramientasColaborativas3/pull/new/feature/ui-update
+remote: 
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ * [new branch]      feature/ui-update -> feature/ui-update
+rama 'feature/ui-update' configurada para rastrear 'origin/feature/ui-update'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout master
+Cambiado a rama 'master'
+Tu rama está actualizada con 'origin/master'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge feature/data-loading
+Actualizando 425cf15..7793703
+Fast-forward
+ app.js     |  7 ++++++-
+ data.json  |  1 +
+ index.html | 28 ++++++++++++++++------------
+ 3 files changed, 23 insertions(+), 13 deletions(-)
+ create mode 100644 data.json
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add index.html
+git commit -m "merge: resolve nav conflict and include Proyectos"
+git push origin master
+[master b751177] merge: resolve nav conflict and include Proyectos
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 348 bytes | 348.00 KiB/s, listo.
+Total 3 (delta 2), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+   425cf15..b751177  master -> master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge feature/data-loading
+git status
+Ya está actualizado.
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ ^C
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ alumno05@alumno05-HP-ProDesk:~/git/GITHUB$ cd Ejercicio3
+bash: cd: Ejercicio3: No existe el archivo o el directorio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB$ ls
+EJERCICIO2  EJERCICIO3  portfolio-git
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB$ cd EJERCICIO3
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git config --global user.name
+git config --global user.email
+dgutlop
+dgutlop5@gmail.com
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git config --global alias.lg "log --graph --oneline --decorate --all"
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git lg
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ [3~qmerge feature/data-loadingui-updateeinto feature/data-loadingborativas3.git
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB$: No existe el archivo o el directorio
+Orden «bash:» no encontrada. Quizá quiso decir:
+  la orden «bash» del paquete deb «bash (5.2.21-2ubuntu1)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB$: No existe el archivo o el directorio
+EJERCICIO2: no se encontró la orden
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB$: No existe el archivo o el directorio
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+dgutlop5@gmail.com
+dgutlop: no se encontró la orden
+dgutlop5@gmail.com: no se encontró la orden
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: error de sintaxis cerca del elemento inesperado `('
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+ayuda:: no se encontró la orden
+ayuda:: no se encontró la orden
+ayuda:: no se encontró la orden
+ayuda:: no se encontró la orden
+bash: error de sintaxis cerca del elemento inesperado `newline'
+ayuda:: no se encontró la orden
+ayuda:: no se encontró la orden
+ayuda:: no se encontró la orden
+ayuda:: no se encontró la orden
+bash: error de sintaxis cerca del elemento inesperado `newline'
+Inicializado: no se encontró la orden
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: .: ..: es un directorio
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: dist/: No existe el archivo o el directorio
+*.log:: no se encontró la orden
+Orden «bash:» no encontrada. Quizá quiso decir:
+  la orden «bash» del paquete deb «bash (5.2.21-2ubuntu1)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+about.html: no se encontró la orden
+style.css: no se encontró la orden
+app.js: no se encontró la orden
+index.html:: no se encontró la orden
+about.html:: no se encontró la orden
+style.css:: no se encontró la orden
+app.js:: no se encontró la orden
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+Reinicializado: no se encontró la orden
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: error de sintaxis cerca del elemento inesperado `commit-raíz'
+bash: error de sintaxis cerca del elemento inesperado `('
+Orden «create» no encontrada. Quizá quiso decir:
+  la orden «pcreate» del paquete deb «pbuilder-scripts (22)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+Orden «create» no encontrada. Quizá quiso decir:
+  la orden «pcreate» del paquete deb «pbuilder-scripts (22)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+Orden «create» no encontrada. Quizá quiso decir:
+  la orden «pcreate» del paquete deb «pbuilder-scripts (22)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+Orden «create» no encontrada. Quizá quiso decir:
+  la orden «pcreate» del paquete deb «pbuilder-scripts (22)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+Orden «create» no encontrada. Quizá quiso decir:
+  la orden «pcreate» del paquete deb «pbuilder-scripts (22)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+Enumerando: no se encontró la orden
+bash: error de sintaxis cerca del elemento inesperado `('
+Compresión: no se encontró la orden
+bash: error de sintaxis cerca del elemento inesperado `('
+bash: error de sintaxis cerca del elemento inesperado `('
+bash: error de sintaxis cerca del elemento inesperado `('
+To: no se encontró la orden
+about.html: no se encontró la orden
+Orden «rama» no encontrada. Quizá quiso decir:
+  la orden «nama» del paquete deb «nama (1.216-2)»
+  la orden «rdma» del paquete deb «iproute2 (6.1.0-1ubuntu6.2)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+* b751177 (HEAD -> master, origin/master) merge: resolve nav conflict and include Proyectos
+* 7793703 (origin/feature/data-loading, feature/data-loading) feat: add Proyectos link to nav
+*   a398f72 Merge branch 'master' into feature/data-loading
+|\  
+* | afc7fe4 feat: load and log data.json in app.js
+* | 4017c54 feat: add data.json with app metadata
+| | * 5362455 (origin/feature/ui-update, feature/ui-update) refactor: update nav to ul list
+| |/  
+| * 425cf15 (hotfix/about-styles) hotfix: link stylesheet in about page
+|/  
+about.html: no se encontró la orden
+bash: error de sintaxis cerca del elemento inesperado `('
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+* b751177 (HEAD -> master, origin/master) merge: resolve nav conflict and include Proyectos
+* 7793703 (origin/feature/data-loading, feature/data-loading) feat: add Proyectos link to nav
+*   a398f72 Merge branch 'master' into feature/data-loading
+|\  
+* | afc7fe4 feat: load and log data.json in app.js
+* | 4017c54 feat: add data.json with app metadata
+| | * 5362455 (origin/feature/ui-update, feature/ui-update) refactor: update nav to ul list
+| |/  
+| * 425cf15 (hotfix/about-styles) hotfix: link stylesheet in about page
+|/  
+about.html: no se encontró la orden
+bash: error de sintaxis cerca del elemento inesperado `('
+bash: alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$: No existe el archivo o el directorio
+Orden «bash:» no encontrada. Quizá quiso decir:
+  la orden «bash» del paquete deb «bash (5.2.21-2ubuntu1)»
+Pruebe con: sudo apt install <nombre del paquete deb>
+bash: error de sintaxis cerca del elemento inesperado `('
+about.html:: no se encontró la orden
+> q
+> ^C
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge feature/ui-update
+Auto-fusionando index.html
+CONFLICTO (contenido): Conflicto de fusión en index.html
+Fusión automática falló; arregle los conflictos y luego realice un commit con el resultado.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add index.html
+git commit -m "merge: resolve nav conflict (ul + Proyectos)"
+git push origin master
+[master a0f663f] merge: resolve nav conflict (ul + Proyectos)
+Enumerando objetos: 1, listo.
+Contando objetos: 100% (1/1), listo.
+Escribiendo objetos: 100% (1/1), 236 bytes | 236.00 KiB/s, listo.
+Total 1 (delta 0), reusados 0 (delta 0), pack-reusados 0
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+   b751177..a0f663f  master -> master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        master
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge feature/ui-update
+Ya está actualizado.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+        master
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ rm master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge feature/ui-update
+Ya está actualizado.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git merge feature/ui-update
+Ya está actualizado.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout master
+git status
+Ya en 'master'
+Tu rama está actualizada con 'origin/master'.
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ mkdir assets
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git mv style.css assets/style.css
+git mv app.js assets/app.js
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+Cambios a ser confirmados:
+  (usa "git restore --staged <archivo>..." para sacar del área de stage)
+        renombrados:     app.js -> assets/app.js
+        renombrados:     style.css -> assets/style.css
+
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+        modificados:     index.html
+
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git diff --cached --name-status
+R100    app.js  assets/app.js
+R100    style.css       assets/style.css
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add index.html
+git commit -m "refactor: carpetas de assets organizadas"
+[master 43d920a] refactor: carpetas de assets organizadas
+ 3 files changed, 2 insertions(+), 2 deletions(-)
+ rename app.js => assets/app.js (100%)
+ rename style.css => assets/style.css (100%)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push origin master
+Enumerando objetos: 6, listo.
+Contando objetos: 100% (6/6), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (4/4), listo.
+Escribiendo objetos: 100% (4/4), 426 bytes | 426.00 KiB/s, listo.
+Total 4 (delta 2), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+   a0f663f..43d920a  master -> master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git diff --cached --name-status
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git lg
+* 43d920a (HEAD -> master, origin/master) refactor: carpetas de assets organizadas
+*   a0f663f merge: resolve nav conflict (ul + Proyectos)
+|\  
+| * 5362455 (origin/feature/ui-update, feature/ui-update) refactor: update nav to ul list
+* | b751177 merge: resolve nav conflict and include Proyectos
+* | 7793703 (origin/feature/data-loading, feature/data-loading) feat: add Proyectos link to nav
+* | a398f72 Merge branch 'master' into feature/data-loading
+|\| 
+| * 425cf15 (hotfix/about-styles) hotfix: link stylesheet in about page
+* | afc7fe4 feat: load and log data.json in app.js
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+        modificados:     about.html
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git stash save "traduccion incompleta"
+Directorio de trabajo y estado de índice On master: traduccion incompleta guardados
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git status
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add assets/style.css
+git commit -m "hotfix: update main-nav background color"
+git push origin master
+[master 5e5368a] hotfix: update main-nav background color
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Enumerando objetos: 7, listo.
+Contando objetos: 100% (7/7), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (4/4), listo.
+Escribiendo objetos: 100% (4/4), 384 bytes | 384.00 KiB/s, listo.
+Total 4 (delta 2), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+   43d920a..5e5368a  master -> master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git stash list
+stash@{0}: On master: traduccion incompleta
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git stash pop
+En la rama master
+Tu rama está actualizada con 'origin/master'.
+
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+        modificados:     about.html
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
+Descartado refs/stash@{0} (c0ea3e61893a6b6b337bcad017911dabd0938c98)
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git add about.html
+git commit -m "feat: translate about page to English"
+git push origin master
+[master 7f0d818] feat: translate about page to English
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 6 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 415 bytes | 415.00 KiB/s, listo.
+Total 3 (delta 1), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+   5e5368a..7f0d818  master -> master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git stash list
+git log --oneline -5
+7f0d818 (HEAD -> master, origin/master) feat: translate about page to English
+5e5368a hotfix: update main-nav background color
+43d920a refactor: carpetas de assets organizadas
+a0f663f merge: resolve nav conflict (ul + Proyectos)
+b751177 merge: resolve nav conflict and include Proyectos
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git tag -a v1.0-gold -m "Release v1.0-gold"
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git show v1.0-gold
+tag v1.0-gold
+Tagger: dgutlop <dgutlop5@gmail.com>
+Date:   Fri Feb 13 10:47:49 2026 +0100
+
+Release v1.0-gold
+
+commit 7f0d818ff4ef562b0cfacc87c589935d769c6f9c (HEAD -> master, tag: v1.0-gold, origin/master)
+Author: dgutlop <dgutlop5@gmail.com>
+Date:   Fri Feb 13 10:46:43 2026 +0100
+
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git log --graph --oneline --all
+* 7f0d818 (HEAD -> master, tag: v1.0-gold, origin/master) feat: translate about page to English
+* 5e5368a hotfix: update main-nav background color
+* 43d920a refactor: carpetas de assets organizadas
+*   a0f663f merge: resolve nav conflict (ul + Proyectos)
+|\  
+| * 5362455 (origin/feature/ui-update, feature/ui-update) refactor: update nav to ul list
+* | b751177 merge: resolve nav conflict and include Proyectos
+* | 7793703 (origin/feature/data-loading, feature/data-loading) feat: add Proyectos link to nav
+* | a398f72 Merge branch 'master' into feature/data-loading
+|\| 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git log -S "data.json" --oneline
+afc7fe4 feat: load and log data.json in app.js
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git log --stat -n 5
+commit 7f0d818ff4ef562b0cfacc87c589935d769c6f9c (HEAD -> master, tag: v1.0-gold, origin/master)
+Author: dgutlop <dgutlop5@gmail.com>
+Date:   Fri Feb 13 10:46:43 2026 +0100
+
+    feat: translate about page to English
+
+ about.html | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+commit 5e5368ae2806a9c109c56dd18ae375a8ef4f189a
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git tag v1.0-final
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git tag
+v1.0-final
+v1.0-gold
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push origin --tags
+Enumerando objetos: 1, listo.
+Contando objetos: 100% (1/1), listo.
+Escribiendo objetos: 100% (1/1), 160 bytes | 160.00 KiB/s, listo.
+Total 1 (delta 0), reusados 0 (delta 0), pack-reusados 0
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ * [new tag]         v1.0-final -> v1.0-final
+ * [new tag]         v1.0-gold -> v1.0-gold
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git tag
+git show v1.0-gold --no-patch
+v1.0-final
+v1.0-gold
+tag v1.0-gold
+Tagger: dgutlop <dgutlop5@gmail.com>
+Date:   Fri Feb 13 10:47:49 2026 +0100
+
+Release v1.0-gold
+
+commit 7f0d818ff4ef562b0cfacc87c589935d769c6f9c (HEAD -> master, tag: v1.0-gold, tag: v1.0-final, origin/master)
+Author: dgutlop <dgutlop5@gmail.com>
+Date:   Fri Feb 13 10:46:43 2026 +0100
+
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git checkout master
+Ya en 'master'
+Tu rama está actualizada con 'origin/master'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch -m master main
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch
+  feature/data-loading
+  feature/ui-update
+  hotfix/about-styles
+* main
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push -u origin main
+Total 0 (delta 0), reusados 0 (delta 0), pack-reusados 0
+remote: 
+remote: Create a pull request for 'main' on GitHub by visiting:
+remote:      https://github.com/dgutlop/HerramientasColaborativas3/pull/new/main
+remote: 
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ * [new branch]      main -> main
+rama 'main' configurada para rastrear 'origin/main'.
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push origin --delete master
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ ! [remote rejected] master (refusing to delete the current branch: refs/heads/master)
+error: falló el empuje de algunas referencias a 'https://github.com/dgutlop/HerramientasColaborativas3.git'
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch
+  feature/data-loading
+  feature/ui-update
+  hotfix/about-styles
+* main
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch -m master main
+git push -u origin main
+fatal: no branch named 'master'
+rama 'main' configurada para rastrear 'origin/main'.
+Everything up-to-date
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push origin --delete master
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ ! [remote rejected] master (refusing to delete the current branch: refs/heads/master)
+error: falló el empuje de algunas referencias a 'https://github.com/dgutlop/HerramientasColaborativas3.git'
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git push origin --delete master
+To https://github.com/dgutlop/HerramientasColaborativas3.git
+ - [deleted]         master
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch -a
+  feature/data-loading
+  feature/ui-update
+  hotfix/about-styles
+* main
+  remotes/origin/feature/data-loading
+  remotes/origin/feature/ui-update
+  remotes/origin/main
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git config --global alias.historial "log --graph --decorate --all --oneline"
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git historial
+* 7f0d818 (HEAD -> main, tag: v1.0-gold, tag: v1.0-final, origin/main) feat: translate about page to English
+* 5e5368a hotfix: update main-nav background color
+* 43d920a refactor: carpetas de assets organizadas
+*   a0f663f merge: resolve nav conflict (ul + Proyectos)
+|\  
+| * 5362455 (origin/feature/ui-update, feature/ui-update) refactor: update nav to ul list
+* | b751177 merge: resolve nav conflict and include Proyectos
+* | 7793703 (origin/feature/data-loading, feature/data-loading) feat: add Proyectos link to nav
+* | a398f72 Merge branch 'master' into feature/data-loading
+|\| 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git branch -a
+  feature/data-loading
+  feature/ui-update
+  hotfix/about-styles
+* main
+  remotes/origin/feature/data-loading
+  remotes/origin/feature/ui-update
+  remotes/origin/main
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git config --global alias.historial "log --graph --decorate --all --oneline"
+git historial
+* 7f0d818 (HEAD -> main, tag: v1.0-gold, tag: v1.0-final, origin/main) feat: translate about page to English
+* 5e5368a hotfix: update main-nav background color
+* 43d920a refactor: carpetas de assets organizadas
+*   a0f663f merge: resolve nav conflict (ul + Proyectos)
+|\  
+| * 5362455 (origin/feature/ui-update, feature/ui-update) refactor: update nav to ul list
+* | b751177 merge: resolve nav conflict and include Proyectos
+* | 7793703 (origin/feature/data-loading, feature/data-loading) feat: add Proyectos link to nav
+* | a398f72 Merge branch 'master' into feature/data-loading
+|\| 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git tag
+git push origin --tags
+v1.0-final
+v1.0-gold
+Everything up-to-date
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ --graph --decorate
+--all 
+--graph: no se encontró la orden
+--all: no se encontró la orden
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ --graph --decorate --all
+--graph: no se encontró la orden
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ git historial
+* 7f0d818 (HEAD -> main, tag: v1.0-gold, tag: v1.0-final, origin/main) feat: translate about page to English
+* 5e5368a hotfix: update main-nav background color
+* 43d920a refactor: carpetas de assets organizadas
+*   a0f663f merge: resolve nav conflict (ul + Proyectos)
+|\  
+| * 5362455 (origin/feature/ui-update, feature/ui-update) refactor: update nav to ul list
+* | b751177 merge: resolve nav conflict and include Proyectos
+* | 7793703 (origin/feature/data-loading, feature/data-loading) feat: add Proyectos link to nav
+* | a398f72 Merge branch 'master' into feature/data-loading
+|\| 
+alumno05@alumno05-HP-ProDesk:~/git/GITHUB/EJERCICIO3$ 
